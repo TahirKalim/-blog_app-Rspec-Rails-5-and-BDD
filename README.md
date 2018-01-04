@@ -1,24 +1,22 @@
-# README
+RSpec and Capybara
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+-Write out the scenario in a test file
 
-Things you may want to cover:
+first step - Feature will fail!
+-Build the features one by one till the test passes
 
-* Ruby version
+processfor creating articles feature test and feature
 
-* System dependencies
+-Create a branch to do the development work
+-Work feature test
+-Build features to make test pass one by one
+-Once the feature test passes with no errors -merge branch with master branch
 
-* Configuration
+-Visit root page
+-click on new article
+-fill in title
+-fill in body
+-create article
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+-Article has been created
+-articles path
