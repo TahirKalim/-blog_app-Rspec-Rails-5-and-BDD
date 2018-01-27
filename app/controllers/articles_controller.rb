@@ -1,7 +1,8 @@
 class ArticlesController < ApplicationController
-   before_action :authenticate_user!, except: [:index, :show]
-   before_action :set_article, only: [:show, :edit, :update, :destroy]
-   def index
+  #before_action :authenticate_user!, except: [:index, :show]
+  before_action :set_article, only: [:show, :edit, :update, :destroy]
+  
+  def index
     @articles = Article.all
   end
   
@@ -11,6 +12,7 @@ class ArticlesController < ApplicationController
   
   def create
     @article = Article.new(article_params)
+    @article.user = current_user
     if @article.save
       flash[:success] = "Article has been created"
       redirect_to articles_path
@@ -21,48 +23,43 @@ class ArticlesController < ApplicationController
   end
   
   def show
-    
   end
-
+  
   def edit
- 
   end
   
   def update
-   
-  if @article.update(article_params)
-  flash[:success] = "Article has been updated"
-  redirect_to @article 
-  else
-  flash.now[:danger] = "Article has not been updated"
-  render :edit
+    if @article.update(article_params)
+      flash[:success] = "Article has been updated"
+      redirect_to @article
+    else
+      flash.now[:danger] = "Article has not been updated"
+      render :edit
+    end
   end
-  end
-
-  def destroy
   
-  if @article.destroy
-  flash[:success] = "Article has been deleted."
-  redirect_to articles_path 
+  def destroy
+    if @article.destroy
+      flash[:success] = "Article has been deleted"
+      redirect_to articles_path
+    end
   end
-  end
-
+  
   protected
-  def resource_not_found
-  message = "The article you are looking for could not be found" 
-  flash[:alert] = message
-  redirect_to root_path
-  end
+  
+    def resource_not_found
+      message = "The article you are looking for could not be found"
+      flash[:alert] = message
+      redirect_to root_path
+    end
   
   private
-
-  def set_article
-  @article = Article.find(params[:id])
-  end
+  
+    def set_article
+      @article = Article.find(params[:id])
+    end
   
     def article_params
       params.require(:article).permit(:title, :body)
     end
 end
-
- 
