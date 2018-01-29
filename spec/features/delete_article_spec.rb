@@ -2,7 +2,10 @@ require "rails_helper"
 RSpec.feature "Deleting an Article" do
 
 before do
-@article = Article.create(title: "The first article", body: "Lorem ipsum dolor sit amet, consectetur.") 
+john = User.create(email: "john@example.com", password: "password")
+login_as(john)
+@article = Article.create(title: "Title One", body: "Body of article one", user: john)
+end
 
 scenario "A user deletes an article" do
 end
